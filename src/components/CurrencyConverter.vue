@@ -1,20 +1,27 @@
 <template>
   <div class="container">
+
+    
     <h1>Convertisseur de Monnaie</h1>
     <form @submit.prevent="convertCurrency" class="row g-3">
+
+      <!-- Montant -->
       <div class="col-md-4">
         <label for="amount" class="form-label">Montant:</label>
         <input type="number" v-model="amount" class="form-control" required />
       </div>
+      <!------------>
 
+      <!-- Première liste déroulante -->
       <div class="col-md-4">
         <label for="fromCurrency" class="form-label">De:</label>
         <select v-model="fromCurrency" class="form-select">
           <option v-for="currency in currenciesList" :key="currency.code" :value="currency.code">{{ currency.name }}</option>
         </select>
       </div>
+      <!------------------------------>
 
-      <!-- Utilisation du composant CurrencySearch -->
+      <!-- SearchBar -->
       <div class="col-md-4">
         <currency-search
           :currencies="currenciesList"
@@ -22,7 +29,9 @@
           @selectCurrency="selectCurrency"
         />
       </div>
+      <!--------------->
 
+      <!-- Deuxième liste déroulante -->
       <div class="col-md-4">
         <label for="toCurrency" class="form-label">À:</label>
         <select v-model="toCurrency" class="form-select">
@@ -32,19 +41,21 @@
           <option value="all">Toutes les devises</option>
         </select>
       </div>
+      <!------------------------------>
 
       <div class="col-md-12">
         <button type="submit" class="btn btn-primary">Convertir</button>
       </div>
     </form>
 
-    <!-- Utilisation du composant CurrencyResult -->
+    <!-- CurrencyResult -->
     <currency-result
       :amount="amount"
       :fromCurrency="fromCurrency"
       :toCurrency="toCurrency"
       :result="result"
     />
+    <!-------------------->
   </div>
 </template>
 
@@ -61,7 +72,7 @@ export default {
       amount: 1,
       fromCurrency: 'EUR',
       toCurrency: 'USD',
-      currenciesList: [],  // Modifié pour initialiser avec un tableau vide
+      currenciesList: [],
       result: null,
     };
   },
@@ -161,10 +172,11 @@ export default {
 };
 </script>
   
-  <style scoped>
+<style scoped>
 .container {
   max-width: 600px;
   margin: auto;
+  margin-top: 2%;
   padding: 20px;
   border-radius: 50px;
   background: #e0e0e0;
