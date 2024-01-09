@@ -160,8 +160,8 @@ export default {
         }
       } else {
         // Afficher un message d'erreur si fromCurrency est égal à toCurrency
-        console.error('Cannot convert the same currency.');
-        this.result = { error: 'Cannot convert the same currency.' };
+        console.error('Vous ne pouvez pas convertir une devise à elle même.');
+        this.result = { error: 'Vous ne pouvez pas convertir une devise à elle même.' };
       }
     },
   },
