@@ -1,9 +1,9 @@
 <template>
   <div>
-    <p v-if="!isObjectResult">1 {{ fromCurrency }} = {{ result }} {{ toCurrency }}</p>
+    <ul v-if="!isObjectResult"> <li>Erreur : Le résultat ne doit être ni nul ni négatif !</li></ul>
     <ul v-else>
       <li v-for="(rate, currencyCode) in result" :key="currencyCode">
-        1 {{ fromCurrency }} = {{ rate }} {{ currencyCode }}
+        {{ amount }} {{ fromCurrency }} = {{ rate }} {{ currencyCode }}
       </li>
     </ul>
   </div>
@@ -19,7 +19,9 @@ export default {
   },
   computed: {
     isObjectResult() {
-      return typeof this.result === 'object';
+      if (this.amount > 0){
+        return typeof this.result === 'object';
+      } else {return false;}
     },
   },
 };
@@ -33,7 +35,7 @@ ul {
   margin: 0;
 }
 
-li {
+p,li {
   margin-bottom: 5px;
   color: black;
 }
